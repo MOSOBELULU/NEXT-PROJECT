@@ -3,7 +3,7 @@ import { getAllEvents } from "../../helpers/api-util"
 import EventList from "@/components/events/eventList"
 import EventSearch from "@/components/events/EventSearch"
 import { useRouter } from "next/router"
-import { getStaticProps } from ".."
+
 
 export default function AllEventsPage(props) {
   const {events} = props.events;

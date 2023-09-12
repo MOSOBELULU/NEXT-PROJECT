@@ -3,7 +3,7 @@ import classes from "./eventList.module.css"
 
 export default function EventList(props) {
 const {items} = props
-
+console.log(items)
   return (
     <div>
       <ul className={classes.list}>

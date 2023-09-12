@@ -9,7 +9,6 @@ export async function getAllEvents() {
         events.push({
             id: key,
             ...data[key]
-
         })
 
     }
