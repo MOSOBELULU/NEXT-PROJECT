@@ -1,4 +1,4 @@
-
+import Head from "next/head";
 import { useRouter } from "next/router"
 import EventList from "@/components/events/eventList";
 import ResultsTitle from "@/components/events/ResultsTitle";
@@ -30,8 +30,22 @@ export default function FilteredEventsPage(props) {
     }
   }, [data])
 
+  
+  let pageHeadData = <Head>
+    <title> Filtered Events</title>
+    <neta 
+    name='description'
+    content= {'A list of filtered events.'} />
+  </Head>
+
+
   if (!loadedEvents) {
-    return <p className='center'>Loading...</p>
+    return (
+      <Fragment>
+        {pageHeadData}
+        <p className='center'>Loading...</p>
+      </Fragment>
+    )
   }
 
   const filteredYear = filterData[0];
@@ -39,6 +53,16 @@ export default function FilteredEventsPage(props) {
 
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
+
+ pageHeadData = (
+    <Head>
+        <title>Filtered Events</title>
+          <meta 
+          name="description" 
+          content={`All events for ${numMonth}/${numYear}`}
+          />
+        </Head>
+  )
 
   
   if (isNaN(numYear) ||
@@ -51,6 +75,7 @@ export default function FilteredEventsPage(props) {
   ) {
     return (
     <Fragment>
+      {pageHeadData}
         <ErrorAlert>
           <p>invalid filter. Please adjust your values!</p>
         </ErrorAlert>
@@ -69,6 +94,7 @@ export default function FilteredEventsPage(props) {
     if (!filteredEvents || filteredEvents.length === 0) {
       return (
       <Fragment>
+        {pageHeadData}
         <ErrorAlert> <p>No Events found for the chosen Filter!!</p></ErrorAlert>
 
         <div className='center'>
@@ -83,6 +109,7 @@ export default function FilteredEventsPage(props) {
 
     return (
       <Fragment>
+        {pageHeadData}
         <ResultsTitle date={date} />
         <EventList items={filteredEvents} />
       </Fragment>
