@@ -11,6 +11,16 @@ function NewComment(props) {
   function sendCommentHandler(event) {
     event.preventDefault();
 
+    
+    console.log('sendCommentHandler called');
+    //check if props.onAddCooment is a function
+    if (typeof props.onAddComment === 'function') {
+      console.log('onAddComment is a function');
+    } else {
+      console.log('onAddComment is not a function');
+    }
+
+
     const enteredEmail = emailInputRef.current.value;
     const enteredName = nameInputRef.current.value;
     const enteredComment = commentInputRef.current.value;

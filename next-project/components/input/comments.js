@@ -14,15 +14,13 @@ function Comments(props) {
     if (showComments){
       fetch('/api/comments/' + eventId).then((response) => response.json())
       .then((data) => {
-        setComments(data.comments)
+        setComments(data.comments);
       })
     }
   } , [showComments])
 
   function toggleCommentsHandler() {
     setShowComments((prevStatus) => !prevStatus);
-
-   
   }
 
   function addCommentHandler(commentData) {
@@ -43,7 +41,8 @@ function Comments(props) {
         {showComments ? 'Hide' : 'Show'} Comments
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList  items={comments}/>}
+      {showComments && <CommentList  items={comments}
+      />}
     </section>
   );
 }
