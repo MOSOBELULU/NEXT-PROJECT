@@ -11,16 +11,6 @@ function NewComment(props) {
   function sendCommentHandler(event) {
     event.preventDefault();
 
-    
-    console.log('sendCommentHandler called');
-    //check if props.onAddCooment is a function
-    if (typeof props.onAddComment === 'function') {
-      console.log('onAddComment is a function');
-    } else {
-      console.log('onAddComment is not a function');
-    }
-
-
     const enteredEmail = emailInputRef.current.value;
     const enteredName = nameInputRef.current.value;
     const enteredComment = commentInputRef.current.value;
@@ -61,9 +51,8 @@ function NewComment(props) {
         <label htmlFor='comment'>Your comment</label>
         <textarea id='comment' rows='5' ref={commentInputRef}></textarea>
       </div>
-      <button>Submit</button>
       {isInvalid && <p>Please enter a valid email address and comment!</p>}
-      
+      <button className={classes.btn}>Submit</button>
     </form>
   );
 }

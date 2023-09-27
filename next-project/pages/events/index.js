@@ -6,39 +6,43 @@ import EventSearch from "@/components/events/EventSearch"
 import { useRouter } from "next/router"
 
 
-export default function AllEventsPage(props) {
-  const {events} = props.events;
+function AllEventsPage(props) {
   const router = useRouter();
+  const { events } = props;
 
   function findEventsHandler(year, month) {
-    const fullPath = `/events/${year}/${month}/abc`;
+    const fullPath = `/events/${year}/${month}`;
+
     router.push(fullPath);
   }
+
   return (
     <Fragment>
       <Head>
-      <title>All Events</title>
-        <meta 
-        name="description" 
-        content="find lot of events"/>
+        <title>All my events</title>
       </Head>
-
-      <EventSearch onSearch={findEventsHandler}/>
-      <EventList
-      items={events}/>
+      <Head>
+        <title>All Events</title>
+        <meta
+          name='description'
+          content='Find a lot of great events that allow you to evolve...'
+        />
+      </Head>
+      <EventsSearch onSearch={findEventsHandler} />
+      <EventList items={events} />
     </Fragment>
-   
-  )
+  );
 }
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   const events = await getAllEvents();
 
-  return{
+  return {
     props: {
       events: events,
     },
     revalidate: 60
-  }
-
+  };
 }
+
+export default AllEventsPage;
